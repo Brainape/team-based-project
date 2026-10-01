@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public float playerHealth;
     public float enemyDamage;
     public Image healthSprite;
+
+    public Animator animator;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -66,6 +68,23 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
+
+        if(horizontalInput > 0.1f)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+            animator.Play("walk");
+        }
+        else if(horizontalInput < -0.1f)
+        {
+            animator.Play("walk");
+
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+
+        if(horizontalInput == 0f)
+        {
+            animator.Play("idle");
+        }
     }
 
 
@@ -83,6 +102,8 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy"))
         {
             playerHealth -= enemyDamage * Time.deltaTime;
+            animator.Play("hurt");
+
         }
     }
 }
