@@ -15,7 +15,8 @@ public class Health : MonoBehaviour
     {
         if(health <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);   
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //if the health is 0 or less, reloads the current scene
         }
     }
 
@@ -24,6 +25,7 @@ public class Health : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             health -= 1;
+            //if the player collides with an enemy, health is reduced by 1
         }
     }
 }

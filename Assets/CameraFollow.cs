@@ -15,5 +15,6 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(enemy.position.x - xoffset, enemy.position.y - yofsset, transform.position.z);
+        //follows the player but creates an offset so player can still be on screen since camera is following the enemy
     }
 }
